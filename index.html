@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cuento infantil ilustrado de Damian Rivero Alvarado (Colegio Cardenal Sancha, 2026): Tomi, un tucán que tiene amigos pero no se atreve a hablar en clase.">
+<meta property="og:type" content="book">
+<meta property="og:title" content="La voz de Tomi">
+<meta property="og:description" content="Cuento infantil ilustrado de Damian Rivero Alvarado (Colegio Cardenal Sancha, 2026): Tomi, un tucán que tiene amigos pero no se atreve a hablar en clase.">
+<meta property="og:image" content="https://damianriveroalvarado-byte.github.io/la-voz-de-tomi/img/portada.jpg">
+<meta property="og:url" content="https://damianriveroalvarado-byte.github.io/la-voz-de-tomi/">
+<link rel="icon" href="img/portada.jpg">
+<title>La voz de Tomi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap">
+<style>
+  /* Un libro abierto sobre la niebla del bosque: ilustración a la izquierda, texto a la derecha;
+     en el celular, una página encima de la otra. Un solo aspecto (claro), como el libro impreso. */
+  :root {
+    --niebla: #E4ECE6;      /* fondo: bosque de niebla */
+    --papel: #FFFDF8;       /* la hoja del libro */
+    --tinta: #24302A;       /* texto */
+    --bosque: #1E4D2B;      /* títulos, como en el libro impreso */
+    --pico: #D9571F;        /* naranja del pico de Tomi: botón principal */
+    --suave: #5D6B63;       /* textos secundarios */
+    --borde: #CBD8CF;
+    --letra: "Andika", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--niebla);
+    color: var(--tinta);
+    font-family: var(--letra);
+    font-size: 18px;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 16px;
+  }
+  .cabecera {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+  }
+  .marca { font-weight: 700; color: var(--bosque); font-size: 1.05rem; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; }
+  .marca:hover { text-decoration: underline; }
+  .contador { color: var(--suave); font-size: .95rem; font-variant-numeric: tabular-nums; }
+
+  .libro {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    background: var(--papel);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 var(--borde), 0 18px 40px -24px rgba(30, 77, 43, .45);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    min-height: 0;
+  }
+  .lamina { background: #F1EEE6; display: flex; align-items: center; justify-content: center; min-width: 0; }
+  .lamina img { width: 100%; height: 100%; max-height: calc(100vh - 170px); object-fit: contain; display: block; aspect-ratio: 1; }
+  .hoja {
+    min-width: 0;
+    padding: clamp(24px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    border-left: 1px solid var(--borde);
+  }
+  .hoja h1, .hoja h2 { margin: 0; color: var(--bosque); text-wrap: balance; line-height: 1.15; }
+  .hoja h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); }
+  .hoja h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); }
+  .hoja p { margin: 0; max-width: 34ch; }
+  .cuento { font-size: clamp(1.2rem, 2.4vw, 1.55rem); line-height: 1.6; }
+  .num { color: var(--suave); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; }
+  .sub { font-size: 1.2rem; }
+  .autor { color: var(--suave); }
+  .lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .lista b { color: var(--bosque); }
+  .preguntas { margin: 0; padding-left: 1.4em; display: grid; gap: 10px; font-size: 1.2rem; }
+  .creditos { font-size: .95rem; color: var(--suave); display: grid; gap: 4px; }
+  .creditos b { color: var(--tinta); }
+
+  .empezar {
+    align-self: flex-start;
+    font: inherit; font-weight: 700; font-size: 1.15rem;
+    color: #fff; background: var(--pico);
+    border: 0; border-radius: 999px;
+    padding: 12px 26px;
+    cursor: pointer;
+  }
+  .empezar:hover { filter: brightness(1.07); }
+
+  .navegacion {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+  }
+  .flecha {
+    font: inherit; font-weight: 700; font-size: 1rem;
+    color: var(--bosque); background: var(--papel);
+    border: 2px solid var(--bosque); border-radius: 999px;
+    padding: 8px 18px; cursor: pointer; min-width: 120px;
+  }
+  .flecha:hover:not(:disabled) { background: var(--bosque); color: var(--papel); }
+  .flecha:disabled { opacity: .35; cursor: default; }
+  .puntos { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; min-width: 0; }
+  .punto { width: 11px; height: 11px; border-radius: 50%; border: 0; padding: 0; background: var(--borde); cursor: pointer; }
+  .punto[aria-current="true"] { background: var(--pico); transform: scale(1.25); }
+  button:focus-visible { outline: 3px solid var(--pico); outline-offset: 3px; }
+
+  .libro.entra .hoja, .libro.entra .lamina img { animation: aparece .35s ease-out; }
+  @keyframes aparece { from { opacity: .4; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .libro.entra .hoja, .libro.entra .lamina img { animation: none; } }
+
+  @media (max-width: 760px) {
+    body { font-size: 17px; }
+    .libro { grid-template-columns: minmax(0, 1fr); flex: none; }
+    .lamina img { max-height: none; }
+    .hoja { border-left: 0; border-top: 1px solid var(--borde); padding: 24px 20px 28px; }
+    .hoja p { max-width: none; }
+    .puntos { display: none; }
+    .flecha { min-width: 0; flex: 1; }
+  }
+</style>
+<style>body { margin: 0; } img { max-width: 100%; }</style>
+</head>
+<body>
+<header class="cabecera">
+  <button class="marca" type="button" id="ir-portada">La voz de Tomi</button>
+  <span class="contador" id="contador"></span>
+</header>
+
+<main class="libro" id="libro" aria-live="polite">
+  <div class="lamina"><img id="imagen" src="img/portada.jpg" alt="Tomi, un tucán pequeño con morral rojo, en una rama del bosque de niebla."></div>
+  <section class="hoja" id="hoja"></section>
+</main>
+
+<nav class="navegacion" aria-label="Pasar páginas">
+  <button class="flecha" type="button" id="anterior">← Anterior</button>
+  <div class="puntos" id="puntos"></div>
+  <button class="flecha" type="button" id="siguiente">Siguiente →</button>
+</nav>
+
+<script>
+  const CUENTO = [
+    "En lo alto del bosque de niebla había una escuela muy especial. Allí estudiaba Tomi, un tucán pequeño con un pico de todos los colores.",
+    "Tomi tenía muchos amigos. En el recreo saltaba charcos con Lía, la rana dorada, y compartía sus frutas con todos.",
+    "Pero en clase, Tomi nunca hablaba. Aunque sabía las respuestas, se quedaba quieto en su rama, con el pico cerrado.",
+    "Hace tiempo, Tomi había contestado una pregunta con su voz ronca de tucán. Pancho, el mono tití, gritó: “¡Suenas como una puerta vieja!”. Y todos se rieron.",
+    "Desde ese día, Tomi guardó sus ideas debajo del ala. “Si no hablo, nadie se reirá de mí”, pensaba.",
+    "Lía notó que su amigo estaba triste. “¿Por qué ya no hablas en clase?”, le preguntó junto al río. Tomi le contó que sentía vergüenza y miedo.",
+    "Lía lo escuchó sin reírse. “Gracias por contármelo”, le dijo. “¿Y si se lo cuentas también a la profe Ana?”.",
+    "La profe Ana, la osa de anteojos, escuchó a Tomi con calma. Al día siguiente, sentó a toda la clase en un gran círculo.",
+    "“Vamos a hacer un acuerdo”, dijo la profe. “Aquí nadie se burla de las ideas de nadie. Todas las voces cuentan”. Lo dibujaron juntos y lo colgaron en el árbol del salón.",
+    "Pancho se quedó pensando. Se acercó a Tomi y le dijo: “Perdóname. No sabía que te había dolido”.",
+    "Para practicar, la profe les pidió hablar primero en parejas. Tomi le contó su idea a Lía. ¡Fue fácil! Después se la contó a un grupo pequeño.",
+    "Una mañana, Tomi levantó el ala frente a toda la clase y dijo su idea con su voz de tucán. Nadie se rió. Todos aplaudieron.",
+    "Desde entonces, en la escuela del bosque de niebla, todos se atreven a hablar. Porque cuando nadie se burla, todas las voces pueden volar."
+  ];
+
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+  const PAGINAS = [
+    {
+      id: "portada", img: "portada", alt: "Tomi, un tucán pequeño con morral rojo, en una rama del bosque de niebla.",
+      html: `<h1>La voz de Tomi</h1>
+        <p class="sub">Un cuento sobre atreverse a hablar.</p>
+        <p class="autor">Damian Rivero Alvarado · Colegio Cardenal Sancha · 2026</p>
+        <button class="empezar" type="button" data-ir="1">Empezar a leer</button>`
+    },
+    {
+      id: "personajes", img: "personajes", alt: "Tomi, Lía, Pancho y la profe Ana juntos.",
+      html: `<h2>Conoce a los personajes</h2>
+        <ul class="lista">
+          <li><b>Tomi.</b> Un tucán pequeño con un pico de todos los colores. Sabe mucho, pero no se atreve a hablar en clase.</li>
+          <li><b>Lía.</b> Una rana dorada, la mejor amiga de Tomi. Sabe escuchar.</li>
+          <li><b>Pancho.</b> Un mono tití muy bromista. A veces sus bromas hacen daño.</li>
+          <li><b>La profe Ana.</b> Una osa de anteojos. Siempre escucha a sus estudiantes con calma.</li>
+        </ul>
+        <p class="autor">Todos son animales que viven en Colombia.</p>`
+    },
+    ...CUENTO.map((t, i) => ({
+      id: "pagina-" + (i + 1), img: "pagina" + String(i + 1).padStart(2, "0"), alt: "Ilustración de la página " + (i + 1) + " del cuento.",
+      html: `<span class="num">Página ${i + 1} de ${CUENTO.length}</span><p class="cuento">${esc(t)}</p>`
+    })),
+    {
+      id: "conversar", img: "pagina07", alt: "Lía escucha a Tomi junto al río.",
+      html: `<h2>Para conversar</h2>
+        <ol class="preguntas">
+          <li>¿Por qué Tomi dejó de hablar en clase?</li>
+          <li>¿Qué hizo Lía para ayudarlo?</li>
+          <li>¿Qué acuerdo podemos hacer en nuestro salón?</li>
+        </ol>`
+    },
+    {
+      id: "sobre-el-libro", img: "contraportada", alt: "Contraportada del cuento.",
+      html: `<h2>Sobre este libro</h2>
+        <p>Este cuento nació del Trabajo Significativo de Grado «Influencia del nivel de aceptación social en el desarrollo de las habilidades comunicativas en estudiantes de grado décimo del Colegio Cardenal Sancha» (2026).</p>
+        <p>La investigación encontró que muchos estudiantes que se sienten aceptados por su grupo igual prefieren callar en clase por miedo a la burla. Por eso Tomi tiene amigos y aun así no se atreve a hablar.</p>
+        <p>Las soluciones del cuento son las estrategias que propone la investigación: acuerdos de aula frente a la burla, practicar primero en parejas, aprender a expresar lo que sentimos y contar con el apoyo de un adulto.</p>
+        <div class="creditos">
+          <span><b>Texto:</b> Damian Rivero Alvarado, grado 11.º B.</span>
+          <span><b>Tutora:</b> Angie Lorena Monroy.</span>
+          <span><b>Ilustraciones:</b> creadas con inteligencia artificial (Gemini) a partir de las indicaciones del autor.</span>
+        </div>
+        <button class="empezar" type="button" data-ir="0">Volver a la portada</button>`
+    }
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const libro = $("libro"), imagen = $("imagen"), hoja = $("hoja"), puntos = $("puntos");
+  let actual = 0;
+
+  PAGINAS.forEach((p, i) => {
+    const b = document.createElement("button");
+    b.className = "punto"; b.type = "button";
+    b.setAttribute("aria-label", "Ir a " + (p.id === "portada" ? "la portada" : p.id.replace("-", " ")));
+    b.addEventListener("click", () => ir(i));
+    puntos.appendChild(b);
+  });
+
+  function mostrar(i) {
+    actual = Math.max(0, Math.min(PAGINAS.length - 1, i));
+    const p = PAGINAS[actual];
+    imagen.src = "img/" + p.img + ".jpg";
+    imagen.alt = p.alt;
+    hoja.innerHTML = p.html;
+    $("anterior").disabled = actual === 0;
+    $("siguiente").disabled = actual === PAGINAS.length - 1;
+    $("contador").textContent = (actual + 1) + " / " + PAGINAS.length;
+    [...puntos.children].forEach((b, k) => b.setAttribute("aria-current", k === actual ? "true" : "false"));
+    libro.classList.remove("entra"); void libro.offsetWidth; libro.classList.add("entra");
+    const sig = PAGINAS[actual + 1];
+    if (sig) new Image().src = "img/" + sig.img + ".jpg";
+  }
+
+  function ir(i) {
+    const id = PAGINAS[Math.max(0, Math.min(PAGINAS.length - 1, i))].id;
+    if (location.hash.slice(1) === id) mostrar(i); else location.hash = id;
+  }
+
+  function desdeHash() {
+    const k = PAGINAS.findIndex((p) => p.id === location.hash.slice(1));
+    mostrar(k < 0 ? 0 : k);
+  }
+
+  hoja.addEventListener("click", (e) => { const b = e.target.closest("[data-ir]"); if (b) ir(+b.dataset.ir); });
+  $("anterior").addEventListener("click", () => ir(actual - 1));
+  $("siguiente").addEventListener("click", () => ir(actual + 1));
+  $("ir-portada").addEventListener("click", () => ir(0));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") ir(actual + 1);
+    if (e.key === "ArrowLeft") ir(actual - 1);
+  });
+  let x0 = null;
+  libro.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  libro.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) ir(actual + (dx < 0 ? 1 : -1));
+  });
+  window.addEventListener("hashchange", desdeHash);
+  desdeHash();
+</script>
+</body>
+</html>
